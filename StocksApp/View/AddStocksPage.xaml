@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="StocksApp.View.AddStocksPage"
+    NavigationPage.HasBackButton="True"
+    Title="AddStockPage">
+    <ContentPage.Content>
+        <StackLayout Margin="20,30">
+            <SearchBar
+           x:Name="searchBar"
+           Placeholder="Search Stocks..."
+           CancelButtonColor="Red"
+           PlaceholderColor="Orange"
+           TextColor="Black"
+           BackgroundColor="Transparent"
+           TextTransform="Lowercase"
+           HorizontalTextAlignment="Center"
+           FontSize="Medium"
+           FontAttributes="Italic"
+           Text="{Binding SearchText}"
+           SearchCommand="{Binding StocksSearchCommand}"
+           SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"/>
+            <CollectionView x:Name="Item"
+                       SelectedItem="None"
+                       SelectionMode="None"
+                       ItemsSource="{Binding StocksList}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                            <Frame CornerRadius="20" BorderColor="Orange" HasShadow="False">
+                                <StackLayout>
+                                    <Label  Text="{Binding shortname}"/>
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer CommandParameter="{Binding .}"
+                                        Command="{Binding BindingContext.SelectCommand,Source={x:Reference Name=Item}}"/>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                            </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

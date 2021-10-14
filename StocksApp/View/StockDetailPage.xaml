@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+    x:Class="StocksApp.View.StockDetailPage"
+    Title="StockDetailPage"
+    NavigationPage.HasBackButton="True">
+    <ContentPage.Content>
+            <StackLayout Margin="10,50" Orientation="Vertical">
+                <Label HorizontalOptions="Center"  Text="Stock Prices in $"/>
+        <microcharts:ChartView HeightRequest="400" BackgroundColor="Transparent" Chart="{Binding GoalsChart}" />
+                <Label HorizontalOptions="Center"  Text="Years"/>
+                <ScrollView Orientation="Horizontal">
+                <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+                    <Button x:Name="btn1" 
+                            BackgroundColor="Blue" TextColor="White" WidthRequest="60" HeightRequest="60" CornerRadius="30" Text="1d"
+                            Command="{Binding FilterCommand}" CommandParameter="{x:Reference btn1}"/>
+                    <Button x:Name="btn2"   WidthRequest="60" HeightRequest="60" CornerRadius="30" BackgroundColor="Blue" TextColor="White" Text="5d"
+                            Command="{Binding FilterCommand}" CommandParameter="{x:Reference btn2}"/>
+                    <Button x:Name="btn3" TextColor="White"  WidthRequest="60" HeightRequest="60" CornerRadius="30" BackgroundColor="Blue" Text="3mo"
+                            Command="{Binding FilterCommand}" CommandParameter="{x:Reference btn3}"/>
+                    <Button x:Name="btn4" TextColor="White"  WidthRequest="60" HeightRequest="60" CornerRadius="30" BackgroundColor="Blue" Text="6mo"
+                            Command="{Binding FilterCommand}" CommandParameter="{x:Reference btn4}"/>
+                     <Button x:Name="btn5" TextColor="White"  WidthRequest="60" HeightRequest="60" CornerRadius="30" BackgroundColor="Blue" Text="1y"
+                            Command="{Binding FilterCommand}" CommandParameter="{x:Reference btn5}"/>                    
+                </StackLayout>
+                 </ScrollView>
+
+                <StackLayout Margin="0,10" Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                    <Button x:Name="line" WidthRequest="120" HeightRequest="50"  TextColor="White" BackgroundColor="#FFD45F" CornerRadius="25" Text="LineChart" Command="{Binding ChartCommand}" CommandParameter="{x:Reference line}"/>
+                    <Button x:Name="chart" WidthRequest="120" HeightRequest="50" TextColor="White" BackgroundColor="#FA6978" CornerRadius="25" Text="PointChart" Command="{Binding ChartCommand}" CommandParameter="{x:Reference chart}"/>
+                </StackLayout>
+            </StackLayout>
+        <!--<dxc:ChartView x:Name="chart">
+        <dxc:ChartView.Series>
+            <dxc:LineSeries DisplayName="{Binding StocksList.Date}">
+                <dxc:LineSeries.Data>
+                    <dxc:SeriesDataAdapter DataSource="{Binding StocksList.Values}"
+                                           ArgumentDataMember="Date">
+                        <dxc:ValueDataMember Type="Value" Member="Price"/>
+                    </dxc:SeriesDataAdapter>
+                </dxc:LineSeries.Data>
+            </dxc:LineSeries>
+
+
+
+            <dxc:LineSeries DisplayName="{Binding GdpValueForChina.CountryName}">
+                <dxc:LineSeries.Data>
+                    <dxc:SeriesDataAdapter DataSource="{Binding GdpValueForChina.Values}"
+                                           ArgumentDataMember="Year">
+                        <dxc:ValueDataMember Type="Value" Member="Value"/>
+                    </dxc:SeriesDataAdapter>
+                </dxc:LineSeries.Data>
+            </dxc:LineSeries>
+
+            <dxc:LineSeries DisplayName="{Binding GdpValueForJapan.CountryName}">
+                <dxc:LineSeries.Data>
+                    <dxc:SeriesDataAdapter DataSource="{Binding GdpValueForJapan.Values}"
+                                           ArgumentDataMember="Year">
+                        <dxc:ValueDataMember Type="Value" Member="Value"/>
+                    </dxc:SeriesDataAdapter>
+                </dxc:LineSeries.Data>
+            </dxc:LineSeries>
+        </dxc:ChartView.Series>
+             <dxc:ChartView.AxisX>
+             <dxc:DateTimeAxisX MeasureUnit="Year" 
+                           GridAlignment="Year" 
+                           GridSpacing="1"/>
+             </dxc:ChartView.AxisX>
+
+            <dxc:ChartView.AxisY>
+        <dxc:NumericAxisY>
+            <dxc:NumericAxisY.Title>
+                <dxc:AxisTitle Text="Stocks($)">
+                    <dxc:AxisTitle.Style>
+                        <dxc:TitleStyle>
+                            <dxc:TitleStyle.TextStyle>
+                                <dxc:TextStyle Size="16"/>
+                            </dxc:TitleStyle.TextStyle>
+                        </dxc:TitleStyle>
+                    </dxc:AxisTitle.Style>
+                </dxc:AxisTitle>
+            </dxc:NumericAxisY.Title>
+            <dxc:NumericAxisY.Label>
+                <dxc:AxisLabel TextFormat="#.#" Position="Inside"/>
+            </dxc:NumericAxisY.Label>
+        </dxc:NumericAxisY>
+    </dxc:ChartView.AxisY>
+            <dxc:ChartView.Legend>
+        <dxc:Legend VerticalPosition="TopOutside" 
+                    HorizontalPosition="Center" 
+                    Orientation="LeftToRight"/>
+    </dxc:ChartView.Legend>
+    </dxc:ChartView>-->
+    </ContentPage.Content>
+</ContentPage>

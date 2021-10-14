@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="StocksApp.View.HomePage"
+    Title="HomePage"
+    NavigationPage.HasNavigationBar="True">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+             
+        <CollectionView
+            x:Name="Item"
+            Margin="20,30"
+            AbsoluteLayout.LayoutBounds="1,1,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            SelectedItem="None"
+            SelectionMode="None"
+            ItemsSource="{Binding StocksList}"
+            EmptyView="No Stocks added yet.">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                        <Frame BorderColor="Green" HasShadow="False" CornerRadius="20">
+                       <Grid Margin="2" ColumnDefinitions="*,0.2*">
+                        <StackLayout Grid.Column="0">
+                            <Label  Text="{Binding longName}" />
+                            <Label  Text="{Binding exchange}" />
+                            <Label  Text="{Binding MarketChange}"/>
+                            <Label  Text="{Binding Price, StringFormat='{0:N}'}"/>
+                        
+                        </StackLayout>
+                            <ImageButton Grid.Column="1"
+                                BackgroundColor="Transparent"
+                                Source="next" CommandParameter="{Binding .}"
+                                Command="{Binding BindingContext.ViewCommand,Source={x:Reference Name=Item}}"/>
+                            </Grid>
+                            </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+            <ActivityIndicator AbsoluteLayout.LayoutBounds="0.5,0.5,20,20"
+                               AbsoluteLayout.LayoutFlags="PositionProportional"
+                IsRunning="{Binding IsLoading}" />
+
+            <ImageButton  AbsoluteLayout.LayoutBounds="0.8,0.8,80,80"
+                     AbsoluteLayout.LayoutFlags="PositionProportional"
+                     BackgroundColor="Transparent"
+                     Source="add" Command="{Binding AddNewStockCommand}"/>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>
